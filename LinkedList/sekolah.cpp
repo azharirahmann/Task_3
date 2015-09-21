@@ -1,11 +1,9 @@
-void deallocate(address p){
-    free (p);
+void createnewlist(list *l){
+    first(*l)=nil;
 }
 
-void insertlast(list *l, address p){
-    address q;
+void insertfirst(list *l, address p){
     infotype x;
-    q=first(*l);
     data_pelajar(&x);
     p=allocate(x);
     if (first(*l)==nil){
@@ -13,31 +11,26 @@ void insertlast(list *l, address p){
         next(first(*l))=nil;
     }
     else{
-        while(next(q)!=nil){
-        q=next(q);
-        }
-        next(q)=p;
+        next(p)=first(*l);
+        first(*l)=p;
     }
 }
 
-void deletelast(list *l, address p){
-    address q;
-    q=first(*l);
+void deletefirst(list *l, address p){
     if (first(*l)==nil){
-        cout << "Data tidak ada";
+        cout << "Data tidak ada \n";
+        cout << "Kembali ke Menu Utama. . .";
     }
-    else if(next(first(*l))==nil){
+    else if (next(first(*l))==nil){
         first(*l)=nil;
         deallocate(first(*l));
         cout << "Delete Data Sukses ! \n";
         cout << "Kembali ke Menu Utama. . .";
     }
     else{
-        while (next(next(q))!=nil){
-            q=next(q);
-        }
-        p=next(q);
-        next(q)=nil;
+        p=first(*l);
+        first(*l)=next(p);
+        next(p)=nil;
         deallocate(p);
         cout << "Delete Data Sukses ! \n";
         cout << "Kembali ke Menu Utama. . .";
