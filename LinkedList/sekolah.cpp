@@ -1,3 +1,6 @@
+//M. Azhari Rahman (1301144116)
+// Bagian : search, insertafter, deleteafter, menu
+
 address searchElement1(list *l, int a){
     address p;
     p=first(*l);
