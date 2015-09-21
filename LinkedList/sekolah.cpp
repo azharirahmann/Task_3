@@ -1,40 +1,45 @@
-address allocate(infotype x){
-    address p=(address)malloc(sizeof(elmlist));
-    info(p)=x;
-    next(p)=nil;
-    return p;
+void deallocate(address p){
+    free (p);
 }
 
-void data_pelajar(infotype *x){
-    infotype a;
-    cout << "Nomor induk : ";
-    cin >> a.no_induk;
-    cout << "Nama siswa : ";
-    cin >> a.nama;
-    cout << "Kelas : ";
-    cin >> a.kelas;
-    cout << "Tahun Lahir : ";
-    cin >> a.tahun_lahir;
-    cout << "Alamat : ";
-    cin >> a.alamat;
-    cout << endl;
-    *x=a;
+void insertlast(list *l, address p){
+    address q;
+    infotype x;
+    q=first(*l);
+    data_pelajar(&x);
+    p=allocate(x);
+    if (first(*l)==nil){
+        first(*l)=p;
+        next(first(*l))=nil;
+    }
+    else{
+        while(next(q)!=nil){
+        q=next(q);
+        }
+        next(q)=p;
+    }
 }
 
-void view (list *l){
-    address p;
+void deletelast(list *l, address p){
+    address q;
+    q=first(*l);
     if (first(*l)==nil){
         cout << "Data tidak ada";
     }
+    else if(next(first(*l))==nil){
+        first(*l)=nil;
+        deallocate(first(*l));
+        cout << "Delete Data Sukses ! \n";
+        cout << "Kembali ke Menu Utama. . .";
+    }
     else{
-        p=first(*l);
-        do{
-            cout << "Nomor induk : " << info(p).no_induk << endl;
-            cout << "Nama siswa  : " << info(p).nama << endl;
-            cout << "Kelas       : " << info(p).kelas << endl;
-            cout << "Tahun Lahir : " << info(p).tahun_lahir << endl;
-            cout << "Alamat      : " << info(p).alamat << endl << endl;
-            p=next(p);
-        }while(p!=nil);
+        while (next(next(q))!=nil){
+            q=next(q);
+        }
+        p=next(q);
+        next(q)=nil;
+        deallocate(p);
+        cout << "Delete Data Sukses ! \n";
+        cout << "Kembali ke Menu Utama. . .";
     }
 }

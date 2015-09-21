@@ -11,8 +11,8 @@
 #define next(p) (p)-> next
 #define first(l) ((l).first)
 
-address allocate(infotype x);
-void data_pelajar(infotype *x);
-void view (list *l);
+void deallocate(address p);
+void deletelast(list *l, address p);
+void insertlast(list *l, address p);
 
 #endif // SEKOLAH_H_INCLUDED
